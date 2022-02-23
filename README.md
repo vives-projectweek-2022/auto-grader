@@ -29,7 +29,7 @@ sudo apt-get install python
 ### Verify Python
 
 ```command
-python -- version
+python --version
 ```
 
 [source](https://www.makeuseof.com/install-python-ubuntu/)
