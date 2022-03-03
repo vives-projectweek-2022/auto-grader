@@ -58,5 +58,7 @@ thermal printer code file:
 ```commands
 conda activate mbed
 mbed new .
+mbed toolchain GCC_ARM
+mbed target NUCLEO_L476RG
 mbed compile -f
 ```

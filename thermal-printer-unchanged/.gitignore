@@ -1,0 +1,5 @@
+BUILD
+mbed-os
+.mbed
+mbed-os.lib
+__pycache__
