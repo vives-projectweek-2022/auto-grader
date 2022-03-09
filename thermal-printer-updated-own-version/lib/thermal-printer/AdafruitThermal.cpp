@@ -25,9 +25,10 @@ AdafruitThermal::AdafruitThermal(PinName RX_Pin, PinName TX_Pin) {
 }
 
 void AdafruitThermal::begin(int heatTime) {
-   BufferedSerial printer(AdafruitThermal::_TX_Pin, AdafruitThermal::_RX_Pin);
-  _printer = &printer;
-  _printer->set_baud(9600);
+   //BufferedSerial printer(AdafruitThermal::_TX_Pin, AdafruitThermal::_RX_Pin);
+   _printer = new BufferedSerial(AdafruitThermal::_TX_Pin, AdafruitThermal::_RX_Pin);
+  //_printer = &printer;
+  _printer->set_baud(19200);
 
   // The printer can't start receiving data immediately
   // upon power up -- needs a moment to initialize.  If
@@ -73,6 +74,7 @@ void AdafruitThermal::begin(int heatTime) {
     printBreakTime = 4;  // 500 uS
   writeBytes(18, 35); // DC2 # (print density)
   writeBytes((printBreakTime << 5) | printDensity);
+
 }
 
 // reset printer
@@ -402,4 +404,10 @@ void AdafruitThermal::setCharSpacing(int spacing) {
 }
 void AdafruitThermal::setLineHeight(int val){
   writeBytes(27, 51, val); // default is 32
+}
+
+void AdafruitThermal::PRINTER_PRINT(uint8_t a){
+  //_printer->write((const void *)(&a), 1);
+  uint8_t buffer[] = {a};
+  _printer->write(buffer, 1);
 }

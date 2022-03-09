@@ -42,7 +42,7 @@ python --version
 ## Thermal printer
 
 Baud rate: 19200
-[pinout](https://cdn-shop.adafruit.com/datasheets/A2-user+manual.pdf)
+[datasheet](https://cdn-shop.adafruit.com/datasheets/A2-user+manual.pdf)
 ![pinout](./img/printer-pinout.PNG)
 
 import library: in empty repo (niet in git repo):

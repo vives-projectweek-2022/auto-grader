@@ -1,18 +1,39 @@
 #include "mbed.h"
 #include "../lib/thermal-printer/AdafruitThermal.h"
+#include <iostream>
+#include <fstream>
+#include "string" 
+
+using namespace std;
  
-AdafruitThermal Printer(D0, D1);
+AdafruitThermal Printer(PA_10, PA_9);
  
 int main() {
-        printf("Bye world");
+        ThisThread::sleep_for(500);
+        printf("\nBye world\n");
+        ThisThread::sleep_for(500);
+
         Printer.begin();
+        ThisThread::sleep_for(500);
+
+        printf("Begin succeeded\n");
+        ThisThread::sleep_for(500);
+
         Printer.setDefault();
-        Printer.test();
-        char *OutputText = "Better Work\n";
-        Printer.print(OutputText);
+        ThisThread::sleep_for(500);
+
+        printf("Default succeeded\n");
+
+        ThisThread::sleep_for(500);
         
-        char *Testing_Foo = "Hello World!\n";
-        Printer.print(Testing_Foo);
+
+        // Printer.test();
+
+        // char *OutputText = "Better Work\n";
+        // Printer.print(OutputText);
+        
+        // char *Testing_Foo = "Hello World!\n";
+        // Printer.print(Testing_Foo);
         
         // Printer.justify('C');
         // char *Text_Out11 = "normal\nline\nspacing\n";
@@ -65,4 +86,8 @@ int main() {
         Printer.print(Text_Out1);
         Printer.inverseOff();
         */
+
+       while(true){
+
+       }
 }
