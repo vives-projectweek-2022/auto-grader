@@ -34,6 +34,28 @@ python --version
 
 [source](https://www.makeuseof.com/install-python-ubuntu/)
 
+## openCV on windows/WSL
+
+### install VcXsrv Server
+
+[source](https://sourceforge.net/projects/vcxsrv/)
+
+### configure VcXsrv server
+
+![windows](./img/xming_win_conf.PNG)
+
+![setting](./img/xming_extra.PNG)
+
+### WSL
+
+```command
+sudo apt-get install x11-apps
+
+DISPLAY=<IP van pc>:0.0 xhost <IP van pc>
+
+python3 test.py && xeyes
+```
+
 ## Raspberry Pi
 
 ![pinout](./img/RPI-pinout.PNG)
