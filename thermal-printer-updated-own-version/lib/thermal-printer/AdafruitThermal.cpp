@@ -132,7 +132,7 @@ size_t AdafruitThermal::write(uint8_t c) {
   //DBG(c, HEX);
   //DBG(" ("); 
   
-  PRINTER_PRINT(c);
+  printer_writer(c);
 
   return 1;
 
@@ -151,34 +151,34 @@ void AdafruitThermal::printBarcode(char * text, uint8_t type) {
   writeBytes(29, 107, type); // set the type first
   delay(500);
   // Copy string, not including NUL terminator
-  for(i=0; (c = text[i]); i++) PRINTER_PRINT(c);
+  for(i=0; (c = text[i]); i++) printer_writer(c);
   delay(500);
-  PRINTER_PRINT(c); // Terminator must follow delay. ???
+  printer_writer(c); // Terminator must follow delay. ???
 
   delay(3000); // For some reason we can't immediately have line feeds here
   feed(2);
 }
 
 void AdafruitThermal::writeBytes(uint8_t a) {
-  PRINTER_PRINT(a);
+  printer_writer(a);
 }
 
 void AdafruitThermal::writeBytes(uint8_t a, uint8_t b) {
-  PRINTER_PRINT(a);
-  PRINTER_PRINT(b);
+  printer_writer(a);
+  printer_writer(b);
 }
 
 void AdafruitThermal::writeBytes(uint8_t a, uint8_t b, uint8_t c) {
-  PRINTER_PRINT(a);
-  PRINTER_PRINT(b);
-  PRINTER_PRINT(c);
+  printer_writer(a);
+  printer_writer(b);
+  printer_writer(c);
 }
 
 void AdafruitThermal::writeBytes(uint8_t a, uint8_t b, uint8_t c, uint8_t d) {
-  PRINTER_PRINT(a);
-  PRINTER_PRINT(b);
-  PRINTER_PRINT(c);
-  PRINTER_PRINT(d);
+  printer_writer(a);
+  printer_writer(b);
+  printer_writer(c);
+  printer_writer(d);
 }
 
 // === Character commands ===
@@ -328,7 +328,7 @@ void AdafruitThermal::printBitmap(int w, int h, const uint8_t *bitmap) {
     writeBytes(chunkHeight, w/8);
     delay(500);
     for (int i=0; i<((w/8)*chunkHeight); i++) {
-      PRINTER_PRINT(pgm_read_byte(bitmap + (rowStart*(w/8)) + i));
+      printer_writer(pgm_read_byte(bitmap + (rowStart*(w/8)) + i));
     }
     delay(500);
   }
@@ -344,7 +344,7 @@ void AdafruitThermal::printBitmap(int w, int h, Stream *stream) {
     writeBytes(chunkHeight, w/8);
     delay(500);
     for (int i=0; i<((w/8)*chunkHeight); i++) {
-      PRINTER_PRINT((uint8_t)stream->read());
+      printer_writer((uint8_t)stream->read());
     }
     delay(500);
   }
@@ -397,7 +397,7 @@ void AdafruitThermal::wake() {
 
 ////////////////////// not working?
 void AdafruitThermal::tab(){
-  PRINTER_PRINT(9);
+  printer_writer(9);
 }
 void AdafruitThermal::setCharSpacing(int spacing) {
   writeBytes(27, 32, 0, 10);
@@ -406,8 +406,7 @@ void AdafruitThermal::setLineHeight(int val){
   writeBytes(27, 51, val); // default is 32
 }
 
-void AdafruitThermal::PRINTER_PRINT(uint8_t a){
-  //_printer->write((const void *)(&a), 1);
+void AdafruitThermal::printer_writer(uint8_t a){
   uint8_t buffer[] = {a};
   _printer->write(buffer, 1);
 }

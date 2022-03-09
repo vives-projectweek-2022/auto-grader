@@ -2,30 +2,25 @@
 #include "../lib/thermal-printer/AdafruitThermal.h"
 #include <iostream>
 #include <fstream>
-#include "string" 
+#include <string> 
 
 using namespace std;
  
 AdafruitThermal Printer(PA_10, PA_9);
+I2C i2c(I2C_SDA, I2C_SCL);
  
 int main() {
-        ThisThread::sleep_for(500);
-        printf("\nBye world\n");
-        ThisThread::sleep_for(500);
 
         Printer.begin();
         ThisThread::sleep_for(500);
 
-        printf("Begin succeeded\n");
-        ThisThread::sleep_for(500);
-
         Printer.setDefault();
         ThisThread::sleep_for(500);
-
-        printf("Default succeeded\n");
-
-        ThisThread::sleep_for(500);
         
+        //char buffer[] = {};
+
+        
+
 
         // Printer.test();
 

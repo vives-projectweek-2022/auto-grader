@@ -31,9 +31,6 @@
 #define CODE11  9
 #define MSI 10
 
-
-//#define PRINTER_PRINT(a) _printer->write((const void *)(&a), 1)
-
 #define delay(a) ThisThread::sleep_for(a/1000)
 
 //**************************************************************************
@@ -147,5 +144,5 @@ class AdafruitThermal {
     PinName _TX_Pin;
 
   private:
-    void PRINTER_PRINT(uint8_t a);
+    void printer_writer(uint8_t a);
 };
