@@ -34,26 +34,42 @@ python --version
 
 [source](https://www.makeuseof.com/install-python-ubuntu/)
 
-## openCV on windows/WSL
+## openCV on windows/conda
 
-### install VcXsrv Server
+### install anaconda 
 
-[source](https://sourceforge.net/projects/vcxsrv/)
+[source](https://www.anaconda.com/products/individual)
 
-### configure VcXsrv server
+#### select just me
 
-![windows](./img/xming_win_conf.PNG)
+![me](./img/anacondame.PNG)
 
-![setting](./img/xming_extra.PNG)
+##### chose a install location
 
-### WSL
+![location](./img/anacondalocation.PNG)
 
-```command
-sudo apt-get install x11-apps
+#### register anaconda with python 
 
-DISPLAY=<IP van pc>:0.0 xhost <IP van pc>
+![setting](./img/anacondapython.PNG)
 
-python3 test.py && xeyes
+### install opencv and python
+
+#### start anaconda with admin rights
+
+![setting](./img/anacondaAdmin.PNG)
+
+#### create environment
+
+```bash
+conda create — name opencv
+activate opencv
+```
+
+#### install python & openCV
+
+```bash
+conda install python -y
+conda install -c conda-forge opencv -y
 ```
 
 ## Raspberry Pi
