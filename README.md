@@ -56,7 +56,7 @@ python --version
 
 #### start anaconda with admin rights
 
-![setting](./img/anacondaAdmin.PNG)
+![setting](./img/anacondaAdmin.png)
 
 #### create environment
 
