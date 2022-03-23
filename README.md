@@ -75,6 +75,7 @@ conda install -c conda-forge opencv -y
 ## Raspberry Pi
 
 ![pinout](./img/RPI-pinout.PNG)
+
 [source](https://pi4j.com/1.4/pins/rpi-4b.html)
 
 On the Pi, create a python file (e.g. `printer_communication.py`) which will be the link between the Pi and the Nucleo. The Nucleo is connected to the Pi via the USB port for simplicity. Then, in the file, add the following script:
@@ -111,14 +112,16 @@ No other pins should be connected on the Pi for communication with the Nucleo. N
 ### Background info
 
 Baud rate: 19200
+
 [datasheet](https://cdn-shop.adafruit.com/datasheets/A2-user+manual.pdf)
+
 ![pinout](./img/printer-pinout.PNG)
 
 ### Library
 
 import library: in empty repo (niet in git repo):
 
-[source](https://os.mbed.com/components/Adafruit-Thermal-Printer/)
+[Library source](https://os.mbed.com/components/Adafruit-Thermal-Printer/)
 
 ```commands
 conda activate mbed
