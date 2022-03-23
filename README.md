@@ -20,10 +20,11 @@ python3 -c "import cv2; print(cv2.__version__)"
 
 ## Python
 
-### Install Python
+### Install Python & numpy
 
 ```command
 sudo apt-get install python
+sudo apt install numpy
 ```
 
 ### Verify Python
@@ -65,11 +66,12 @@ conda create — name opencv
 activate opencv
 ```
 
-#### install python & openCV
+#### install python , numpy & openCV
 
 ```bash
 conda install python -y
 conda install -c conda-forge opencv -y
+conda install numpy -y
 ```
 
 ## Raspberry Pi
