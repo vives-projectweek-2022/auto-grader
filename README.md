@@ -60,6 +60,11 @@ python3 test.py && xeyes
 
 ![pinout](./img/RPI-pinout.PNG)
 [source](https://pi4j.com/1.4/pins/rpi-4b.html)
+Check which USB port is in use:
+
+```bash
+dmesg | grep "tty"
+```
 
 ## Thermal printer
 

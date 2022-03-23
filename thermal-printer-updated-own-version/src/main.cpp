@@ -1,88 +1,58 @@
 #include "mbed.h"
 #include "../lib/thermal-printer/AdafruitThermal.h"
 #include <iostream>
-#include <fstream>
 #include <string> 
+#include "USBCDC.h"
 
 using namespace std;
  
 AdafruitThermal Printer(PA_10, PA_9);
-I2C i2c(I2C_SDA, I2C_SCL);
- 
+BufferedSerial pi(USBTX, USBRX);
+
+FILE* serial_file = fdopen(&pi,"r+");
+
 int main() {
 
+        char buffer[20] = {};
         Printer.begin();
-        ThisThread::sleep_for(500);
-
+        ThisThread::sleep_for(chrono::milliseconds(200));
         Printer.setDefault();
-        ThisThread::sleep_for(500);
-        
-        //char buffer[] = {};
-
+        ThisThread::sleep_for(chrono::milliseconds(200));
         
 
-
-        // Printer.test();
-
-        // char *OutputText = "Better Work\n";
-        // Printer.print(OutputText);
         
-        // char *Testing_Foo = "Hello World!\n";
-        // Printer.print(Testing_Foo);
-        
-        // Printer.justify('C');
-        // char *Text_Out11 = "normal\nline\nspacing\n";
-        // Printer.print(Text_Out11);
-        // Printer.setLineHeight(50);
-        // char *Text_Out12 = "Taller\nline\nspacing\n";
-        // Printer.print(Text_Out12);
-        // Printer.setLineHeight(); // Reset to default
-        // Printer.justify('L');
-        
-        // Printer.setSize('L');
-        // char *Text_Out8 = "Large\n";
-        // Printer.print(Text_Out8);
-        
-        // Printer.setSize('M');
-        // char *Text_Out9 = "Medium\n";
-        // Printer.print(Text_Out9);
-        
-        // Printer.setSize('S');
-        // char *Text_Out10 = "Small\n";
-        // Printer.print(Text_Out10);
- 
-        // Printer.doubleHeightOn();
-        // char *Text_Out2 = "Double Height ON\n";
-        // Printer.print(Text_Out2);
-        // Printer.doubleHeightOff();
-        
-        // Printer.justify('R');
-        // char *Text_Out3 = "Right Justified\n";
-        // Printer.print(Text_Out3);
-        
-        // Printer.justify('C');
-        // char *Text_Out4 = "Center Justified\n";
-        // Printer.print(Text_Out4);
-        
-        // Printer.justify('L');
-        // char *Text_Out5 = "Left Justified\n";
-        // Printer.print(Text_Out5);
-        
-        // Printer.boldOn();
-        // char *Text_Out6 = "Bold Text\n";
-        // Printer.print(Text_Out6);
-        // Printer.boldOff();
-        
-        /*
-        Used to work. Stopped working after several tests for whatever reason
-                      
-        char *Text_Out1 = "Inverse ON\n";
-        Printer.inverseOn();
-        Printer.print(Text_Out1);
-        Printer.inverseOff();
-        */
 
        while(true){
 
+               char input = 0;
+               int index = 0;
+               while(true){
+                       input = getc(serial_file);
+                       if (input == '\n'){
+                               break;
+                       }
+                       buffer[index] = input;
+                       index++;
+               }
+               index = 0;
+               printf("***%s***", buffer);
+
+               char * OutputText = buffer;               
+
+               Printer.print(OutputText);
+
+               
+                
+                // ThisThread::sleep_for(chrono::milliseconds(200));
+                // pi.write(buffer, 1);
+                // ThisThread::sleep_for(chrono::milliseconds(200));
+                // pi.read(buffer, 1);
+                // ThisThread::sleep_for(chrono::milliseconds(200));
+                // printf(buffer[0] + "\n");
+                // char * output_pointer = buffer;
+                // char *Output = output_pointer;
+
+                // Printer.print(Output);
+                
        }
 }
