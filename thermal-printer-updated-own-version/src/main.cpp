@@ -19,6 +19,6 @@ int main() {
         while(true){
 
                 scorePrinter.print_characters();
-                
+                scorePrinter.clear_buffer();                
         }
 }

@@ -30,4 +30,12 @@ namespace printer
         char * OutputText = this->buffer;               
         printer->print(OutputText);
     }
+
+    void ScorePrinter::clear_buffer(void){
+        
+        int buffer_length = sizeof(this->buffer)/sizeof(this->buffer[0]);
+        for (int i = 0; i < buffer_length ; i++){
+            this->buffer[i] = 0;
+        }
+    }
 };

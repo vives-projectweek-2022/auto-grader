@@ -11,6 +11,7 @@ namespace printer {
         public:
             ScorePrinter(AdafruitThermal * printer, BufferedSerial * pi);
             void print_characters(void);
+            void clear_buffer(void);
 
         private:
             AdafruitThermal * printer = nullptr;
