@@ -80,73 +80,37 @@ conda install numpy -y
 
 [source](https://pi4j.com/1.4/pins/rpi-4b.html)
 
-On the Pi, create a python file (e.g. `printer_communication.py`) which will be the link between the Pi and the Nucleo. The Nucleo is connected to the Pi via the USB port for simplicity. Then, in the file, add the following script:
+On the Pi, there is a Python file which will be the link between the Pi and the Nucleo (`print.py`). 
 
-```py
-import time
-import serial
+A package has been made that can be installed by entering the following commands:
 
-ser = serial.Serial("/dev/ttyACM0", baudrate = 9600, parity=serial.PARITY_NONE, 
-stopbits=serial.STOPBITS_ONE, bytesize=serial.EIGHTBITS, timeout=1)
-counter=0
-
-while 1:
-        ser.write(b'write counter: %d \n'%(counter))
-        time.sleep(1)
-        counter +=1
-        readedtext = ser.readline()
-        print(readedtext)
-
+```bash
+python3 -m pip install autograder-vives 
 ```
 
-Check which USB port is in use:
+To use the package, run python (`python3`) and enter the following commands:
+
+```bash
+from printer import print
+my_printer = Printer(port)
+```
+
+The 'my_printer' variable name can be changed to any variable name that you want to name your own printer instance. The port in the constructor has to be the correct port to which the Nucleo is connected to the Pi.
+Now you can call the functions you want on the Printer object that has been created, or create more printer objects.
+
+Details of the package can be found in this repository as well.
+
+The Nucleo is connected to the Pi via the USB port for simplicity. The `print.py` file has 3 main functions, but can be expanded later to provide more functionality if needed.
+First, it initiates an instance of the printer object. This is done by creating an object of the Printer class and specifying the connected port in the constructor. To check which USB port is in use:
 
 ```bash
 dmesg | grep "tty"
 ```
 
-Update the "ACM0" to the port in use (obtained from the command above).
+Use the correct ACM port in the constructor (obtained from the command above).
 
-No other pins should be connected on the Pi for communication with the Nucleo. Now data from the `printer_communication` file is written to the serial port specified above and will read the data received from the Nucleo and print this to the terminal. In this case, the data written to the Nucleo will be sent to the printer, and written back to the Pi (this gives a digital view of what has been printed, but this can be changed if desired).
+Second, text can be printed. This is done simply by calling the 'print_text()' function on the Printer object, and entering a string as an argument in the function. This specified string will be printed. This is done by writing the string to the nucleo, which will read it and send that to the printer (further specifications on the printer library can be found on github). <!--- TO DO: put github link to printer repo--->
 
-## Thermal printer
+In this case, the data written to the Nucleo will be sent to the printer, and written back to the Pi (this gives a digital view of what has been printed, but this can be changed if desired).
 
-### Background info
-
-Baud rate: 19200
-
-[datasheet](https://cdn-shop.adafruit.com/datasheets/A2-user+manual.pdf)
-
-![pinout](./img/printer-pinout.PNG)
-
-### Library
-
-import library: in empty repo (niet in git repo):
-
-[Library source](https://os.mbed.com/components/Adafruit-Thermal-Printer/)
-
-```commands
-conda activate mbed
-mbed import https://os.mbed.com/users/aross34/code/Thermal_HelloWorld/
-```
-
-OR
-
-Download a zip file and place the files in a source folder with the rest of the code for the thermal printer.
-
-### Printer setup via Nucleo
-
-Connect the RX pin from the printer with pin D8 on the Nucleo, the TX pin with D2 on the Nucleo and the GND pin with a GND on the Nucleo. Power for the printer is best supplied via external power supply, not connected via the Nucleo or Pi. 5V and GND is needed for the power supply.
-
-To program the printer to print the data received from the Nucleo (which has been received from the file on the Pi which links the devices):
-
-```commands
-conda activate mbed
-mbed new .
-mbed toolchain GCC_ARM
-mbed target NUCLEO_L476RG
-mbed compile -f
-```
-
-Once the Nucleo has been flashed, no further actions should be taken, except change the USB connection from the PC to the Pi (and make sure the connected port is the same as specified in the `printer_communication file`). The rest goes via the input provided by the Pi.
-The [main.cpp file](./thermal-printer-updated-own-version/main.cpp) contains the necessary commands to get the received characters, puts them into the buffer until a new line is detected, then prints the buffer and resets the buffer so new data can be read and printed again.
+Last, the port can also be changed, in case that would be necessary (e.g. in the event the USB connection is changed to another port on the Pi). This is done by calling the 'set_port' function on the Printer object, and passing the desired port as a string as an argument in the function. If you receive the text "Port updated to:" and the port you specified, then the change has been successful.
