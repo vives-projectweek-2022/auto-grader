@@ -80,7 +80,7 @@ conda install numpy -y
 
 [source](https://pi4j.com/1.4/pins/rpi-4b.html)
 
-On the Pi, there is a Python file which will be the link between the Pi and the Nucleo (`print.py`). 
+On the Pi, there is a Python file which will be the link between the Pi and the Nucleo (`print.py`).
 
 A package has been made that can be installed by entering the following commands:
 
