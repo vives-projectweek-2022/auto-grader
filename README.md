@@ -86,11 +86,14 @@ conda activate opencv
 Open command pallette: 'Ctrl + Shift + P'.
 Click on 'Select interpreter' and select the openCV interpreter.
 
-If there is an error when running the python file, execute the following command:
+Extra dependencies also need to be installed (if these are not installed yet). Execute the following command:
 
 ```bash
 pip install opencv-contrib-python
+pip3 install keyboard
 ```
+
+Now the python files can run.
 
 ## Raspberry Pi
 
