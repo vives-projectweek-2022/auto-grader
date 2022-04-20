@@ -62,7 +62,7 @@ python --version
 #### create environment
 
 ```bash
-conda create — name opencv
+conda create --name opencv
 activate opencv
 ```
 
@@ -72,6 +72,24 @@ activate opencv
 conda install python -y
 conda install -c conda-forge opencv -y
 conda install numpy -y
+```
+
+#### Run the code
+
+Open the openCV folder.
+
+In VS code terminal:
+```bash
+conda activate opencv
+```
+
+Open command pallette: 'Ctrl + Shift + P'.
+Click on 'Select interpreter' and select the openCV interpreter.
+
+If there is an error when running the python file, execute the following command:
+
+```bash
+pip install opencv-contrib-python
 ```
 
 ## Raspberry Pi
