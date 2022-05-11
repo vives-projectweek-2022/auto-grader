@@ -1,15 +1,17 @@
-# Dependencies
+# Autograder
 
-## OpenCV on Ubuntu / Linux
+## Dependencies
 
-### Install OpenCV
+### OpenCV on Ubuntu / Linux
+
+#### Install OpenCV
 
 ```command
 sudo apt update
 sudo apt install libopencv-dev python3-opencv
 ```
 
-### Verify OpenCV
+#### Verify OpenCV
 
 ```command
 python3 -c "import cv2; print(cv2.__version__)"
@@ -18,16 +20,16 @@ python3 -c "import cv2; print(cv2.__version__)"
 (Version 4.2.0 at time of writing)
 [source](https://linuxize.com/post/how-to-install-opencv-on-ubuntu-20-04/)
 
-## Python
+### Python
 
-### Install Python & numpy
+#### Install Python & numpy
 
 ```command
 sudo apt-get install python
 sudo apt install numpy
 ```
 
-### Verify Python
+#### Verify Python
 
 ```command
 python --version
@@ -35,38 +37,38 @@ python --version
 
 [source](https://www.makeuseof.com/install-python-ubuntu/)
 
-## openCV on windows/conda
+### openCV on windows/conda
 
-### install anaconda 
+#### install anaconda
 
 [source](https://www.anaconda.com/products/individual)
 
-#### select just me
+##### select just me
 
 ![me](./img/anacondame.PNG)
 
-##### chose a install location
+###### chose a install location
 
 ![location](./img/anacondalocation.PNG)
 
-#### register anaconda with python 
+##### register anaconda with python 
 
 ![setting](./img/anacondapython.PNG)
 
-### install opencv and python
+#### install opencv and python
 
-#### start anaconda with admin rights
+##### start anaconda with admin rights
 
 ![setting](./img/anacondaAdmin.png)
 
-#### create environment
+##### create environment
 
 ```bash
 conda create --name opencv
 activate opencv
 ```
 
-#### install python , numpy & openCV
+##### install python , numpy & openCV
 
 ```bash
 conda install python -y
@@ -74,7 +76,7 @@ conda install -c conda-forge opencv -y
 conda install numpy -y
 ```
 
-#### Run the code
+##### Run the code
 
 Open the openCV folder.
 
@@ -104,3 +106,14 @@ Now the python files can run.
 On the Pi, there is a Python file which will be the link between the Pi and the Nucleo (`print.py`).
 
 More information on this package can be found in the repository of this package: [printer-package](https://github.com/vives-projectweek-2022/autograder-printer-package/tree/master/printer_package)
+
+## Printer
+
+All info concerning the printer can be found in the printer repo: [printer](https://github.com/vives-projectweek-2022/autograder-printer-library)
+
+## Startup project
+
+To start the whole project, go to the opencv repo, and run the menu with `python3 menu.py`
+[Link to opencv](https://github.com/vives-projectweek-2022/autograder-opencv)
+
+More information about the menu can be found in the local README file.
